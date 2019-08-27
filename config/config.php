@@ -19,7 +19,7 @@ return [
     /** 
      * The name of the queue on which to run the workflow jobs
      */
-    'queue' => env('WORKFLOW_QUEUE', 'workflows'),
+    'queue' => env('WORKFLOW_QUEUE', 'default'),
 
     /**
      * This package will fire a variety of events when certain things happen, such
