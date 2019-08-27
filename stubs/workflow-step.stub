@@ -1,0 +1,13 @@
+<?php
+
+namespace DummyNamespace;
+
+use TeamZac\Workflow\AbstractWorkflowStep;
+
+class DummyClass extends AbstractWorkflowStep
+{
+    public function handle()
+    {
+        //
+    }
+}

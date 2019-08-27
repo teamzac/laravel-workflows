@@ -1,0 +1,54 @@
+{
+    "name": "teamzac/laravel-workflows",
+    "description": "A Laravel package for running queued, multi-step workflows",
+    "keywords": [
+        "teamzac",
+        "laravel",
+        "workflows"
+    ],
+    "homepage": "https://github.com/teamzac/laravel-workflows",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Chad Janicek",
+            "email": "chad@zactax.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "bensampo/laravel-enum": "^1.20",
+        "illuminate/support": "5.8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TeamZac\\Workflow\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TeamZac\\Workflow\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TeamZac\\Workflow\\WorkflowServiceProvider"
+            ],
+            "aliases": {
+                "Workflow": "TeamZac\\Workflow\\Facades\\Workflow"
+            }
+        }
+    }
+}

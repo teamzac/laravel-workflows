@@ -1,0 +1,15 @@
+<?php
+
+namespace DummyNamespace;
+
+use TeamZac\Workflow\AbstractWorkflow;
+
+class DummyClass extends AbstractWorkflow
+{
+    /**
+     * The steps to run
+     */
+    protected $steps = [
+        //
+    ];
+}
