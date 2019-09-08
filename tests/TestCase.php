@@ -11,6 +11,7 @@ class TestCase extends OrchestraTestCase
     {
         parent::setUp();
 
+        $this->loadMigrationsFrom(__DIR__ . '../database/migrations');
         $this->artisan('migrate', ['--database' => 'testing'])->run();
 
         Workflow::extend('multiplication', function() {
