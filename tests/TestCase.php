@@ -11,8 +11,7 @@ class TestCase extends OrchestraTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '../database/migrations');
-        $this->artisan('migrate', ['--database' => 'testing'])->run();
+        $this->setupDatabase();
 
         Workflow::extend('multiplication', function() {
             return new Workflows\Multiplication\MultiplicationWorkflow;
@@ -37,6 +36,12 @@ class TestCase extends OrchestraTestCase
         ];
     }
 
+    protected function setupDatabase()
+    {
+        include_once __DIR__.'/../database/migrations/create_workflow_tables.stub';
+        (new \CreateWorkflowTables)->up();
+    }
+
     /**
      * Define environment setup.
      *
@@ -45,12 +50,11 @@ class TestCase extends OrchestraTestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        // Setup default database to use sqlite :memory:
-        // $app['config']->set('database.default', 'testbench');
-        // $app['config']->set('database.connections.testbench', [
-        //     'driver'   => 'sqlite',
-        //     'database' => ':memory:',
-        //     'prefix'   => '',
-        // ]);
+        $app['config']->set('database.default', 'sqlite');
+        $app['config']->set('database.connections.sqlite', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
     }
 }

@@ -18,7 +18,7 @@ class WorkflowServiceProvider extends ServiceProvider
 
             if (! class_exists('CreateWorkflowTables')) {
                 $this->publishes([
-                    __DIR__.'/../database/migrations' => database_path('migrations'),
+                    __DIR__.'/../database/migrations/create_workflow_tables.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_workflow_tables.php'),
                 ], 'migrations');
             }
 
