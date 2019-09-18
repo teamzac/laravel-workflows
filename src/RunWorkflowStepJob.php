@@ -156,6 +156,7 @@ class RunWorkflowStepJob implements ShouldQueue
     public function tags()
     {
         $tags = [
+            'workflow',
             'workflows:' . $this->step->getInstance()->getKey(),
             'step:' . get_class($this->step),
         ];
