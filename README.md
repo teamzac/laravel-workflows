@@ -156,7 +156,6 @@ Once you call ```$instance->run();```, the ```TeamZac\Workflows\RunWorkflowStepJ
 
 The RunWorkflowStepJob receives the Workflow (along with the instance, which was set previously), and the next step to run.
 
-
 Here is the process:
 
 1. If this Instance is starting at the beginning of the Workflow, commencement events will be fired
@@ -166,7 +165,6 @@ Here is the process:
 5.  If no unhandled exceptions are thrown, we'll check for any additional steps.
 6.  If there is a next step, it will be queued and run (return to step 3).
 7.  Otherwise, the Instance will be marked completed and completion events will fire.
-
 
 ### Working with WorkflowSteps
 
@@ -214,6 +212,15 @@ The following events are dispatched by default:
 
 You can customize the events that get dispatched, or simply reference these in your EventServiceProvider as necessary.
 
+## Testing your workflow steps
+
+You can run a workflow in your test suite, but if you'd like to test a single step without having to run through all of the previous steps, you can use the ```test()``` method on the Workflow Manager.
+
+```php
+Workflow::test($workflowInstance, StepClass::class);
+```
+
+This will build the workflow step, set the instance, and fire it. It does not returning anything (although perhaps we'll add some test helpers in the future). However, you can test against any data which should have changed during the running of the workflow step.
 
 ## Configuration
 

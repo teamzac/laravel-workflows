@@ -37,6 +37,19 @@ class WorkflowManager extends Manager
     }
 
     /**
+     * Set up the workflow and run a specific step for a given workflow instance
+     * Use this primarily for testing your workflow steps individually.
+     * 
+     * @param   WorkflowInstance $instance
+     * @param   string $stepClass
+     * @return  void
+     */
+    public function test(WorkflowInstance $instance, $stepClass)
+    {
+        resolve($stepClass)->setInstance($instance)->fire();
+    }
+
+    /**
      * Get the default driver name.
      *
      * @return  string

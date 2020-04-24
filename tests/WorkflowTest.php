@@ -94,4 +94,20 @@ class WorkflowTest extends TestCase
         $this->assertEquals(20, $instance->refresh()->metadata['value']);
         Event::assertDispatchedTimes(WorkflowStepCompleted::class, 2);
     }
+
+    /** @test */
+    function it_can_test_run_a_step()
+    {
+        Event::fake();
+        $instance = WorkflowInstance::create([
+            'workflow' => 'multiplication',
+            'metadata' => [
+                'value' => 1,
+            ]
+        ])->refresh();
+
+        Workflow::test($instance, MultiplyByTen::class);
+
+        $this->assertEquals(10, $instance->refresh()->metadata['value']);
+    }
 }
