@@ -9,18 +9,16 @@ use TeamZac\Workflow\Events\WorkflowInstanceCreated;
 
 class WorkflowInstance extends Model
 {
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'workflowable', 'workflowable_object', 'workflowable_id', 'workflow', 'status', 'status_message', 'metadata'
     ];
 
     protected $casts = [
         'metadata' => 'array',
     ];
 
-    public static function boot()
+    public static function booted()
     {
-        parent::boot();
-
         static::created(function($instance) {
             event(new WorkflowInstanceCreated($instance));
         });
@@ -158,7 +156,7 @@ class WorkflowInstance extends Model
             return;
         }
 
-        $this->workflowable_type = get_class($workflowable);
+        $this->workflowable_type = $workflowable->getMorphClass();
         $this->workflowable_id = $workflowable->getKey();
     }
 }
