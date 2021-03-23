@@ -95,7 +95,17 @@ abstract class AbstractWorkflow
     public function run()
     {
         RunWorkflowStepJob::dispatch($this, $this->getNextStep())
-            ->onQueue(config('workflows.queue'));
+            ->onQueue($this->getQueueConnection());
+    }
+
+    /**
+     * Override this to set a custom queue connection for this workflow type
+     *
+     *@ return string
+     */
+    public function getQueueConnection()
+    {
+        return config('workflows.queue');
     }
 
     /**
