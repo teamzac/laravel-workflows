@@ -118,13 +118,15 @@ class RunWorkflowStepJob implements ShouldQueue
      */
     public function handleException($e)
     {
-        \Log::info($e->getMessage());
-        \Log::info($e->getTrace()[0]);
         $this->workflow->pause($e->getMessage());
 
         collect(config('workflows.events.workflow_paused'))->each(function($class) use ($e) {
             event(new $class($this->workflow->getInstance(), $e));
         });
+
+        if (method_exists($this->step, 'handleException')) {
+            $this->step->handleException($e);
+        }
 
         return $this;
     }
