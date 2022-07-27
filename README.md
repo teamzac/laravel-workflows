@@ -1,4 +1,4 @@
-# A Laravel 5.8+ package for running multi-step, queued workflows
+# A Laravel 8+ package for running multi-step, queued workflows
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/teamzac/laravel-workflows.svg?style=flat-square)](https://packagist.org/packages/teamzac/laravel-workflows)
 [![Total Downloads](https://img.shields.io/packagist/dt/teamzac/laravel-workflows.svg?style=flat-square)](https://packagist.org/packages/teamzac/laravel-workflows)
