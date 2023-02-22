@@ -2,11 +2,14 @@
 
 namespace TeamZac\Workflow;
 
+use Illuminate\Queue\SerializesModels;
 use TeamZac\Workflow\Enums\WorkflowStatus;
 use TeamZac\Workflow\Events\WorkflowCompleted;
 
 abstract class AbstractWorkflow
 {
+    use SerializesModels;
+
     /** @var TeamZac\Workflow\WorkflowInstance */
     protected $instance;
 
