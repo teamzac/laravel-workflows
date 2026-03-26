@@ -18,13 +18,8 @@ class CreateWorkflowTables extends Migration
             $table->bigIncrements('id');
             $table->nullableMorphs('workflowable');
             $table->string('workflow')->index();
-            $table->enum('status', [
-                WorkflowStatus::Queued,
-                WorkflowStatus::InProgress,
-                WorkflowStatus::Paused,
-                WorkflowStatus::Completed,
-                WorkflowStatus::Aborted,
-            ])->default(WorkflowStatus::Queued);
+            $table->enum('status', array_column(WorkflowStatus::cases(), 'value'))
+                ->default(WorkflowStatus::Queued->value);
             $table->text('status_message')->nullable();
             $table->unsignedSmallInteger('current_step')->default(0)->nullable();
             $table->text('metadata')->nullable();

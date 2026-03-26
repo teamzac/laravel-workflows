@@ -34,7 +34,7 @@ class RunWorkflowStepJob implements ShouldQueue
     {
         $this->workflow = $workflow;
         $this->step = $step;
-        $this->onQueue(config('workflow.queue'));
+        $this->onQueue(config('workflows.queue'));
     }
 
     /**

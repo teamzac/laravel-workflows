@@ -15,6 +15,7 @@ class WorkflowInstance extends Model
 
     protected $casts = [
         'metadata' => 'array',
+        'status' => WorkflowStatus::class,
     ];
 
     public static function booted()

@@ -2,13 +2,11 @@
 
 namespace TeamZac\Workflow\Enums;
 
-use BenSampo\Enum\Enum;
-
-final class WorkflowStatus extends Enum
+enum WorkflowStatus: string
 {
-    const Queued = 'queued';
-    const InProgress = 'in_progress';
-    const Paused = 'paused';
-    const Completed = 'completed';
-    const Aborted = 'aborted';
+    case Queued = 'queued';
+    case InProgress = 'in_progress';
+    case Paused = 'paused';
+    case Completed = 'completed';
+    case Aborted = 'aborted';
 }
